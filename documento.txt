@@ -1,0 +1,81 @@
+¿Qué es el stack PDV?
+
+Stack	Función	            Tecnología
+P	    Base de datos	    PostgreSQL (relacional, SQL)
+D	    Backend/API	        Django (Python framework)
+V	    Frontend	        Vue.js (JavaScript framework)
+
+
+¿Cómo se comunican?
+Django expone endpoints REST (/api/...) usando Django REST Framework.
+Vue.js consume esos endpoints usando Axios o Fetch para mostrar datos.
+PostgreSQL almacena los datos del sitio.
+
+
+Estructura típica del proyecto
+mi-sitio/
+├── backend/        ← Django + PostgreSQL
+└── frontend/       ← Vue.js (Vite o Vue CLI)
+
+
+¿Ventajas?
+Django + PostgreSQL es super estable y potente para empresas, administración, etc.
+Vue.js es fácil de aprender y muy visual, ideal para crear interfaces modernas.
+
+Requisitos previos (instala si no los tenés):
+✅ Python 3.10+
+✅ PostgreSQL
+✅ Node.js + npm (solo para Vue)
+✅ Vue CLI o Vite
+✅ pip install pipenv (gestor de entornos virtuales)
+
+
+INSTALACION
+🧪 Paso 1: Backend con Django + PostgreSQL
+1.1 Crea el proyecto Django:
+    terminal:
+        cd backend
+        pipenv install django djangorestframework psycopg2-binary
+        pipenv shell
+        django-admin startproject config .
+
+1.2 Conecta a PostgreSQL
+    1.2.1. Crea la base de datos
+            Si aún no has creado la base de datos, hacelo así:
+            Con pgAdmin:
+                Abrí pgAdmin.
+                Botón derecho sobre Databases → Create → Database...
+                Nombre: estructura_db (o el que quieras)
+                Guardá.
+
+    1.2.2. Edita config/settings.py:
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.postgresql',
+                    'NAME': 'estructura_base_PDV',
+                    'USER': 'postgres',    
+                    'PASSWORD': 'Jazz184*',
+                    'HOST': 'localhost',
+                    'PORT': '5432', 
+                }
+            }
+
+Paso 1.3 — Instalar el conector de PostgreSQL
+    Para que Django pueda hablar con PostgreSQL, necesitas instalar psycopg2 (es el driver de conexión).
+    terminal:
+        pip install psycopg2-binary
+
+Paso 1.4 — Verificar conexión
+    Corremos una migración de prueba para ver que se conecta bien:
+    terminal:
+        python manage.py migrate
+
+Paso 1.5 — Crear una app Django
+    Ahora que tu proyecto ya está conectado a PostgreSQL, crea una app para manejar los datos de tu PDV (Punto de Venta).
+    terminal:    
+        python manage.py startapp ventas
+
+
+
+
+
