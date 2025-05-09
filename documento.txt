@@ -71,11 +71,44 @@ Paso 1.4 — Verificar conexión
         python manage.py migrate
 
 Paso 1.5 — Crear una app Django
-    Ahora que tu proyecto ya está conectado a PostgreSQL, crea una app para manejar los datos de tu PDV (Punto de Venta).
-    terminal:    
-        python manage.py startapp ventas
+    terminal:
+        backend> python manage.py startapp ventas
+
+Paso 1.6 — Crear el proyecto Frontend con Vue.js
+    terminal:
+        > npm install -g @vue/cli
+        > vue create frontend
+    Durante el asistente:
+        Elegí Default ([Vue 3] babel, eslint) o configuralo manualmente según tu preferencia.
+        Aceptá instalar dependencias.
+    terminal:
+        frontend> cd frontend
+        frontend> npm run serve
+
+Paso 1.7 — Configurar comunicación entre Django (backend) y Vue.js (frontend)
+Permitir que el frontend (Vue) pueda hacer peticiones HTTP (por ejemplo, fetch, axios) al backend Django sin problemas de CORS (Cross-Origin Resource Sharing).
+
+    1. Instalar django-cors-headers en tu backend
+    En tu entorno virtual de Django:
+        backend>pip install django-cors-headers
+
+    2. Configurar corsheaders en settings.py
+    Agregá 'corsheaders' al inicio de INSTALLED_APPS
+
+    3. Instalar Axios en el frontend (Vue)
+    Desde la carpeta frontend/, instalá Axios.
+        frontend>npm install axios
+
+    4. Crear un archivo de configuración Axios (opcional pero recomendado)
+    Dentro de frontend/src/, creá un archivo llamado axios.js:
 
 
+Paso 1.8 — Crear y probar una ruta de prueba en Django y consumirla desde Vue.js
+Verificar que el frontend (Vue.js) puede comunicarse correctamente con el backend (Django) a través de una API.
 
+    Parte 1 — Crear un endpoint de prueba en Django
+    Crear archivo urls.py dentro de la app ventas si aún no existe
 
-
+    Parte 2 — Consumir ese endpoint desde Vue.js
+    Usar Axios en un componente Vue:
+    Importar y mostrar el componente (por ejemplo, en App.vue o donde quieras probarlo):
