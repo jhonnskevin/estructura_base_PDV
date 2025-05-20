@@ -1,11 +1,10 @@
 import axios from 'axios'
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000',  // URL del backend Django
-  timeout: 5000,
+const api = axios.create({
+  baseURL: 'http://localhost:8000/api/', // tu backend local
   headers: {
     'Content-Type': 'application/json',
-  },
+  }
 })
 
-export default axiosInstance
+export default api

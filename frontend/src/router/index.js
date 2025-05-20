@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+// Layouts
 import AuthLayout from '../layouts/AuthLayout.vue'
 import PrivateLayout from '../layouts/PrivateLayout.vue'
 import PublicLayout from '../layouts/PublicLayout.vue'
 
 // Vistas de autenticación
-import Login from '../views/auth/Login.vue'
-import Register from '../views/auth/Register.vue'
-import ForgotPassword from '../views/auth/ForgotPassword.vue'
+import AuthLogin from '../views/auth/AuthLogin.vue'
+import AuthRegister from '../views/auth/AuthRegister.vue'
+import AuthForgotPassword from '../views/auth/AuthForgotPassword.vue'
 
 // Vistas privadas (dashboard)
 import Dashboard from '../views/private/Dashboard.vue'
@@ -39,17 +41,17 @@ const routes = [
       {
         path: 'login',
         name: 'Login',
-        component: Login
+        component: AuthLogin
       },
       {
         path: 'register',
         name: 'Register',
-        component: Register
+        component: AuthRegister
       },
       {
         path: 'forgot-password',
         name: 'ForgotPassword',
-        component: ForgotPassword
+        component: AuthForgotPassword
       }
     ]
   },
@@ -76,6 +78,19 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/auth/login', '/auth/register', '/auth/forgot-password', '/', '/about']
+  const authRequired = !publicPages.some(page => to.path.startsWith(page))
+
+  const isLoggedIn = !!localStorage.getItem('access') // clave que usas en login
+
+  if (authRequired && !isLoggedIn) {
+    return next('/auth/login')
+  }
+
+  next()
 })
 
 export default router

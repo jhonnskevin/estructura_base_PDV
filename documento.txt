@@ -14,8 +14,41 @@ PostgreSQL almacena los datos del sitio.
 
 Estructura típica del proyecto
 mi-sitio/
-├── backend/        ← Django + PostgreSQL
-└── frontend/       ← Vue.js (Vite o Vue CLI)
+├── backend/                  # Carpeta del backend con Django
+│   ├── config/               # Proyecto Django
+│   │   ├── __init__.py
+│   │   ├── settings.py       # Configuración del proyecto (incluye BD, CORS, etc.)
+│   │   ├── urls.py           # Enrutamiento general del proyecto
+│   │   ├── asgi.py
+│   │   └── wsgi.py
+│   ├── ventas/               # App de Django (ej. módulo de ventas)
+│   │   ├── __init__.py
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py         # Modelos (BD)
+│   │   ├── serializers.py    # Serializadores de DRF (puede que lo crees tú)
+│   │   ├── views.py          # Vistas (API REST)
+│   │   ├── urls.py           # Rutas específicas de esta app
+│   │   └── tests.py
+│   ├── db.sqlite3 (si usás SQLite temporalmente)
+│   ├── manage.py             # Script para comandos de Django
+│   └── Pipfile / Pipfile.lock  # Dependencias del entorno virtual (pipenv)
+│
+├── frontend/                 # Carpeta del frontend con Vue.js
+│   ├── public/
+│   │   └── index.html        # HTML principal
+│   ├── src/
+│   │   ├── assets/           # Imágenes, íconos, etc.
+│   │   ├── components/       # Componentes Vue reutilizables
+│   │   ├── views/            # Vistas completas (opcional)
+│   │   ├── App.vue           # Componente principal
+│   │   ├── main.js           # Punto de entrada de Vue
+│   │   └── axios.js          # Configuración de Axios (opcional)
+│   ├── package.json          # Config de npm y dependencias
+│   ├── vite.config.js o vue.config.js # Configuración de compilación
+│   └── node_modules/
+│
+└── README.md (opcional)
 
 
 ¿Ventajas?

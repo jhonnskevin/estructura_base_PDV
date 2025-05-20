@@ -1,10 +1,9 @@
-# ventas/urls.py
 from django.urls import path
-from django.http import JsonResponse
-
-def hola_mundo(request):
-    return JsonResponse({'mensaje': '¡Hola desde Django!'})
+from .views import RegisterView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
-    path('api/hola/', hola_mundo, name='hola_mundo'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', TokenObtainPairView.as_view(), name='login'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
