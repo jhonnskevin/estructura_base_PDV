@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <PruebaApi />
-  </div>
+  <router-view />
 </template>
 
 <script>
-import PruebaApi from './components/PruebaApi.vue'
-
 export default {
-  components: { PruebaApi }
+  name: 'App'
 }
 </script>

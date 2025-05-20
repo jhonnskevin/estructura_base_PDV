@@ -1,0 +1,9 @@
+//arranca servidor front
+frontend> npm run serve
+
+//arranca servidor back
+backend> python manage.py runserver
+
+
+//revisa sintaxis
+frontend> npx eslint --ext .vue src/

@@ -1,10 +1,10 @@
 <!-- src/components/PruebaApi.vue -->
 <template>
-    <div>
-      <h2>Respuesta desde Django:</h2>
-      <p>{{ mensaje }}</p>
-    </div>
-  </template>
+  <div>
+    <h2>Respuesta desde Django:</h2>
+    <p>{{ mensaje }}</p>
+  </div>
+</template>
   
   <script>
   import axios from '@/axios'
